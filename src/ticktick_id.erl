@@ -69,6 +69,7 @@ explain( IdBin ) ->
 
 init([MachineId]) ->
 	process_flag(trap_exit, true),
+        process_flag(priority, application:get_env(ticktick, priority, high)),
 	?INFO("Ticktick running on machine : ~p ~n", [MachineId]),
 	{ok, #state{ version = ?TTID_VERSION, machine_id = MachineId, 
 				 space_time = erlang:now(), sequence = 0 }}.
